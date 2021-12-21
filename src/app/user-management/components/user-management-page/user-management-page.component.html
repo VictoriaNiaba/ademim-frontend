@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <mat-tab-group>
+    <mat-tab label="Gestion des étudiants" class="p-2">
+      <mat-toolbar class="group-actions mat-elevation-z1 mt-4">
+        <span>Groupes d'étudiants</span>
+        <span class="spacer"></span>
+        <button
+          mat-flat-button
+          color="primary"
+          (click)="openCreateGroupDialog()"
+        >
+          Créer un groupe
+        </button>
+      </mat-toolbar>
+      <ae-group-list></ae-group-list>
+    </mat-tab>
+
+    <mat-tab label="Gestion du personnel" disabled></mat-tab>
+  </mat-tab-group>
+</div>

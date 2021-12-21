@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Créer un groupe</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="studentGroupForm" class="example-form">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nom du groupe</mat-label>
+      <input
+        cdkFocusInitial
+        formControlName="name"
+        matInput
+        placeholder="Ex. Master Ingénierie du Logiciel et des Données 2020-2021"
+      />
+      <mat-error *ngIf="f.name.invalid">{{ getNameErrorMessage() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width mt-3 mb-6" appearance="outline">
+      <mat-label>Étudiants du groupe</mat-label>
+      <textarea
+        formControlName="students"
+        matInput
+        placeholder="Ex. Victoria,Niaba,1997-04-13,linkedin.com/in/victoria-niaba/,victoria.niaba@gmail.com"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="15"
+        cdkAutosizeMaxRows="15"
+      ></textarea>
+      <mat-error *ngIf="f.students.invalid">{{
+        getStudentsErrorMessage()
+      }}</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-flat-button color="primary" (click)="onFormSubmit()">
+    Créer le groupe
+  </button>
+</mat-dialog-actions>

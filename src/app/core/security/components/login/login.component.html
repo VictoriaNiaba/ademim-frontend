@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="w-full h-full login-container" fxLayout="row wrap">
+    <mat-card class="mat-elevation-z0 m-auto">
+      <h1 title class="title login-title">Connexion</h1>
+      <form [formGroup]="loginForm" class="form-field-full">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <mat-icon aria-hidden="true" matSuffix>mail_outline</mat-icon>
+          <input
+            matInput
+            placeholder="e-mail"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="f.email.invalid"></mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <mat-icon aria-hidden="true" matSuffix>lock_open</mat-icon>
+          <input
+            matInput
+            placeholder="mot de passe"
+            type="password"
+            formControlName="password"
+            required
+          />
+          <mat-error *ngIf="f.password.invalid"></mat-error>
+        </mat-form-field>
+        <button mat-flat-button color="primary" (click)="tryLogin()">
+          Connexion
+        </button>
+      </form>
+    </mat-card>
+  </div>
+</div>

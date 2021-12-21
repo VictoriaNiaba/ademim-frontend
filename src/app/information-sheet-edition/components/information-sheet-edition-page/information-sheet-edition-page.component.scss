@@ -1,0 +1,25 @@
+.edit-button {
+  margin-right: 2rem;
+}
+
+.information-sheet-accordion {
+  margin-bottom: 4rem;
+}
+
+.no-answer-placeholder {
+  font-style: italic;
+  color: rgb(166, 165, 172);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.mat-accordion {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-bottom: 3rem;
+}

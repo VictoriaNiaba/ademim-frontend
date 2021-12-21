@@ -1,0 +1,80 @@
+<div class="container mt-4">
+  <h1>Mes informations personnelles</h1>
+  <mat-accordion
+    class="information-sheet-accordion"
+    *ngIf="myInformationSheet$ | async as myInformationSheet"
+    multi
+  >
+    <mat-expansion-panel [expanded]="true" class="mat-elevation-z1">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Identité </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item>
+          <div mat-line>Nom complet</div>
+          <div mat-line>
+            {{ myInformationSheet.identity.firstname }}
+            {{ myInformationSheet.identity.lastname }}
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line>Email</div>
+          <div mat-line>{{ myInformationSheet.identity.emailAddress }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line>Linkedin</div>
+          <div mat-line>{{ myInformationSheet.identity.linkedin }}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line>Date de naissance</div>
+          <div mat-line>
+            {{ myInformationSheet.identity.dateOfBirth | date: "shortDate" }}
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true" class="mat-elevation-z1">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Groupe </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item>
+          <div mat-line>Nom du groupe</div>
+          <div mat-line>{{ myInformationSheet.group.name }}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel
+      *ngFor="let section of myInformationSheet.sections"
+      [expanded]="true"
+      class="mat-elevation-z1"
+      #sectionPanel
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ section.title }} </mat-panel-title>
+        <button
+          mat-flat-button
+          click-stop-propagation
+          color="primary"
+          class="edit-button"
+          *ngIf="sectionPanel.expanded"
+        >
+          Modifier
+        </button>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item *ngFor="let field of section.fields">
+          <div mat-line>{{ field.question }}</div>
+          <div mat-line>
+            <span *ngIf="field.answer">{{ field.answer }}</span>
+            <span *ngIf="!field.answer" class="no-answer-placeholder">
+              Cette information n'a pas encore été renseignée
+            </span>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

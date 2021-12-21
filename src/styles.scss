@@ -1,0 +1,123 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Poppins, "Helvetica Neue", sans-serif;
+  background-color: #d8e6f759;
+}
+
+@import "~@angular/material/theming";
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: 'Poppins, "Helvetica Neue"',
+  $title: mat-typography-level(16px, 32px, 500),
+  $input: mat-typography-level(inherit, 1.15, 400),
+);
+
+$custom-background: (
+  background: #d8e6f759,
+);
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core($custom-typography);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$candy-app-primary: mat-palette($mat-grey, 900, 800, 900);
+$candy-app-accent: mat-palette($mat-light-blue, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$candy-app-theme: mat-light-theme(
+  $candy-app-primary,
+  $candy-app-accent,
+  $candy-app-warn
+);
+
+// Remplacement de la couleur de fond par défaut
+$background: map-get($candy-app-theme, background);
+$background: map_merge($background, $custom-background);
+$candy-app-theme: map_merge(
+  $candy-app-theme,
+  (
+    background: $background,
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($candy-app-theme);
+
+.mat-toolbar {
+  background-color: white;
+  a {
+    margin-right: 0.5rem;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+.mat-tab-body {
+  height: 100%;
+}
+
+.mat-tab-body-content {
+  padding: 0.5rem;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-form-field .mat-form-field-label-wrapper label {
+  line-height: 17px;
+}
+
+.mat-form-field .mat-form-field-infix input {
+  line-height: 17px;
+}
+
+.alert-snackbar {
+  background-color: #a8313b;
+  color: white;
+}
+.success-snackbar {
+  background-color: #26743c;
+  color: white;
+}
+
+.mat-expansion-panel-header-title {
+  align-items: center !important;
+}
+
+.mat-flat-button {
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
+}
+
+.mat-elevation-z1 {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.mat-line {
+  font-size: 14px !important;
+  &:nth-child(1) {
+    font-weight: 600 !important;
+  }
+}
