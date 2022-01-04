@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SortDirection } from '@angular/material/sort';
 import { Observable } from 'rxjs';
-import { Training } from 'src/app/information-sheet-edition/model/information-sheet';
 import { environment } from 'src/environments/environment';
+import { Training } from '../model/training';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +20,16 @@ export class TrainingService {
     );
   }
 
-  getGroups(sort: string, order: SortDirection, page: number): Observable<any> {
-    const requestUrl = `${this.url}?sort=${sort}&order=${order}&page=${page}`;
+  getTrainingHistory(): Observable<Training[]> {
+    //const requestUrl = `${this.url}?sort=${sort}&order=${order}&page=${page}`;
+    const requestUrl = environment.backendUrl + '/getTrainingHistory';
 
-    return this.httpClient.get<any>(requestUrl);
+    return this.httpClient.get<Training[]>(requestUrl);
+  }
+  removeStudent(student): Observable<any> {
+    //const requestUrl = `${this.url}?sort=${sort}&order=${order}&page=${page}`;
+    const requestUrl = environment.backendUrl + '/remove-student';
+
+    return this.httpClient.post(requestUrl, student);
   }
 }

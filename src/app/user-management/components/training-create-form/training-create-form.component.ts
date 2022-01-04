@@ -74,9 +74,9 @@ export class TrainingCreateFormComponent {
       linkedin: rawStudent.linkedin,
       dateOfBirth: rawStudent.dateOfBirth,
       userAccount: {
-        firstname: rawStudent.firstname,
-        lastname: rawStudent.lastname,
-        emailAddress: rawStudent.emailAddress,
+        firstName: rawStudent.firstname,
+        lastName: rawStudent.lastname,
+        email: rawStudent.emailAddress,
       },
     }));
   }

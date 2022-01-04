@@ -1,18 +1,15 @@
+import { Training } from './training';
+
 export interface InformationSheet {
   identity: Identity;
   training: Training;
   sections: Section[];
 }
 
-export interface Training {
-  id: number;
-  name: string;
-}
-
 export interface Identity {
   firstname: string;
   lastname: string;
-  emailAddress: string;
+  email: string;
   linkedin: string;
   dateOfBirth: string;
 }

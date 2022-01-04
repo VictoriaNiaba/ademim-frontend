@@ -19,7 +19,7 @@
         </mat-list-item>
         <mat-list-item>
           <div mat-line>Email</div>
-          <div mat-line>{{ myInformationSheet.identity.emailAddress }}</div>
+          <div mat-line>{{ myInformationSheet.identity.email }}</div>
         </mat-list-item>
         <mat-list-item>
           <div mat-line>Linkedin</div>
@@ -60,19 +60,15 @@
           color="primary"
           class="edit-button"
           *ngIf="sectionPanel.expanded"
+          (click)="openEditPersonalInfo()"
         >
           Modifier
         </button>
       </mat-expansion-panel-header>
       <mat-list>
-        <mat-list-item *ngFor="let field of section.fields">
-          <div mat-line>{{ field.question }}</div>
-          <div mat-line>
-            <span *ngIf="field.answer">{{ field.answer }}</span>
-            <span *ngIf="!field.answer" class="no-answer-placeholder">
-              Cette information n'a pas encore été renseignée
-            </span>
-          </div>
+        <mat-list-item *ngFor="let answer of answers$ | async">
+          <div mat-line>{{ answer.question.label }}</div>
+          <div ngClass="question" mat-line>{{ answer.value }}</div>
         </mat-list-item>
       </mat-list>
     </mat-expansion-panel>

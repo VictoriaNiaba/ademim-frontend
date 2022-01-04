@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Editer les informations personnelles</h2>
+<mat-dialog-content class="mat-typography" *ngIf="questions$ | async">
+  <form [formGroup]="editPersonalInfoFormGroup" class="example-form">
+    <div *ngFor="let question of questions$ | async">
+      <mat-label>{{ question.label }}</mat-label>
+      <mat-form-field
+        *ngIf="question.type === 'SELECT'"
+        class="example-full-width"
+        appearance="outline"
+      >
+        <mat-form-field appearance="fill">
+          <mat-select [formControlName]="question.controlName">
+            <mat-option value="" selected> - Aucune - </mat-option>
+            <mat-option *ngFor="let st of situation" [value]="st">
+              {{ st }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </mat-form-field>
+
+      <mat-form-field
+        *ngIf="question.type === 'TEXT_AREA'"
+        class="example-full-width mt-3 mb-6"
+        appearance="outline"
+      >
+        <textarea
+          [formControlName]="question.controlName"
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="5"
+          cdkAutosizeMaxRows="5"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field
+        *ngIf="question.type === 'INPUT_TEXT'"
+        class="example-full-width"
+        appearance="outline"
+      >
+        <input
+          cdkFocusInitial
+          [formControlName]="question.controlName"
+          matInput
+        />
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-flat-button color="primary" (click)="onFormSubmit()">
+    Soumettre
+  </button>
+</mat-dialog-actions>

@@ -1,8 +1,4 @@
 <div class="example-container mat-elevation-z1">
-  <div class="example-loading-shade" *ngIf="isLoadingResults">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-  </div>
-
   <div class="example-table-container">
     <table
       mat-table
@@ -18,7 +14,35 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
           Nom
         </th>
-        <td mat-cell *matCellDef="let group">{{ group.name }}</td>
+        <td ngClass="section" mat-cell *matCellDef="let group">
+          <div>
+            {{ group.name }}
+          </div>
+          <div>
+            <mat-list role="list" ngClass="item-list">
+              <mat-list-item
+                ngClass="item"
+                *ngFor="let student of group.students"
+                role="listitem"
+                >{{ student.userAccount.firstName }} -
+                {{ student.userAccount.lastName }}
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="deleteItem(student)"
+                  title="Remove student"
+                >
+                  <mat-icon
+                    ngClass="delete-icon"
+                    aria-hidden="false"
+                    aria-label="Example home icon"
+                    >delete_forever</mat-icon
+                  >
+                </button>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
